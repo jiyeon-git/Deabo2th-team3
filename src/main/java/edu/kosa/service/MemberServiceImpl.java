@@ -1,11 +1,17 @@
 package edu.kosa.service;
 
+import edu.kosa.mapper.MemberMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class MemberService implements CRUDService {
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class MemberServiceImpl implements CRUDService {
+
+    private final MemberMapper mapper;
 
     @Override
     public boolean create(Object object) {
