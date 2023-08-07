@@ -33,7 +33,7 @@
             <td><input type="submit" value="로그인"> <input
                     type="reset" value="취소">
                 <a href="/join">회원가입</a>
-                <a href="/update">비밀번호 변경</a> 
+                
                 </td>
                
         </tr>

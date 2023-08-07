@@ -44,7 +44,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()       // POST 요청 허용
                 .authorizeRequests()    // 요청에 권한 설정을 적용
                 .antMatchers("/join").permitAll() // 회원가입 페이지에 모든 사용자 접근 허용
-                .antMatchers("/update").permitAll()
                 .anyRequest().authenticated()   // 모든 요청에 대해 인증된(로그인된) 사용자만 접근할 수 있도록 설정
                 .and()
 

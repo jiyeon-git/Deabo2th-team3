@@ -39,4 +39,5 @@
 
 <header class="foodmaster">FOOD MASTER
     <a href="/auth/logout"><img class="logout" src="#"></a>
+    <a href="/update">비밀번호 변경</a> 
 </header>
