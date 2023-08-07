@@ -18,7 +18,7 @@ public class UserServiceImpl implements CRUDService {
 
     @Override
     public boolean create(Object object) {
-        Map<String, String> map = (Map<String, String>)object;
+        Map<String, String> map = (Map<String, String>) object;
         map.put("password", encoder.encode(map.get("password")));
         return mapper.insertUser(map) >= 1;
     }
