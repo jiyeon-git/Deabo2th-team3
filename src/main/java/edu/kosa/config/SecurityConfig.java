@@ -32,8 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(encoder())
-                .usersByUsernameQuery("SELECT userid, password, enabled FROM users WHERE userid = ?")
-                .authoritiesByUsernameQuery("SELECT u.userid username, a.authority FROM authorities a, users u WHERE u.userid = ? AND u.authorityId = a.id");
+                .usersByUsernameQuery("SELECT userId, password, enabled FROM users WHERE userId = ?")
+                .authoritiesByUsernameQuery("SELECT userId, authority FROM USERS WHERE userId = ?");
     }
 
     @Override
@@ -49,8 +49,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 모든 사용자가 폼 로그인 페이지에 접근할 수 있도록 허용
                 .formLogin()
                 .loginPage("/login")
-//                .loginProcessingUrl("")
-
                 .permitAll()
                 .and()
 
