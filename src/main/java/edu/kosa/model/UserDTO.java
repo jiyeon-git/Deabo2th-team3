@@ -11,6 +11,7 @@ import java.util.Collection;
 @Setter
 public class UserDTO extends User {
 
+    private static final long serialVersionUID = 3577861075245315609L;
     private String userId;
 
     public UserDTO(String username, String password, boolean enabled, boolean accountNonExpired,
