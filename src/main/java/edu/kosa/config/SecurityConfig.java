@@ -2,12 +2,14 @@ package edu.kosa.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
@@ -23,15 +25,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
         auth
-                .inMemoryAuthentication()
-                .withUser("user").password("{noop}user").roles("USER")
-                .and()
-                .withUser("admin").password("{noop}admin").roles("ADMIN", "USER");
-                /*.jdbcAuthentication()
+//                .inMemoryAuthentication()
+//                .withUser("user").password("{noop}user").roles("USER")
+//                .and()
+//                .withUser("admin").password("{noop}admin").roles("ADMIN", "USER");
+                .jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(encoder())
-                .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username = ?")
-                .authoritiesByUsernameQuery("SELECT u.username, a.authority FROM authorities a, users u WHERE u.username = ? AND u.authorityId = a.id");*/
+                .usersByUsernameQuery("SELECT userid, password, enabled FROM users WHERE userid = ?")
+                .authoritiesByUsernameQuery("SELECT u.userid username, a.authority FROM authorities a, users u WHERE u.userid = ? AND u.authorityId = a.id");
     }
 
     @Override
@@ -45,6 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 모든 사용자가 폼 로그인 페이지에 접근할 수 있도록 허용
                 .formLogin()
 //                .loginPage("/")
+                .loginProcessingUrl("")
+
                 .permitAll()
                 .and()
 
@@ -54,9 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
     }
 
-    /*@Bean
+    @Bean
     public BCryptPasswordEncoder encoder() {
-
         return new BCryptPasswordEncoder();
-    }*/
+    }
 }
