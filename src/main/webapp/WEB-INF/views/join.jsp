@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/join" method="post"></form>
+	<h2>회원가입</h2>
+	<table>
+		<tr>
+			<th>ID</th>
+			<td><input type="text" name="userid"></td>
+		</tr>
+		<tr>
+			<th>PWD</th>
+			<td><input type="text" name="password"></td>
+		</tr>
+		<tr>
+			<th>권한타입</th>
+			<td>
+			<select name="authority">
+				<option value="ROLE_USER">회원</option>
+				<option value="ROLE_ADMIN">관리자</option>
+			</select>
+			</td>
+		</tr>
+	</table>
+	<input type="submit" value="가입">
+</body>
+</html>
