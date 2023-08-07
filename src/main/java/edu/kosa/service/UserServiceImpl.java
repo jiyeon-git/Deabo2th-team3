@@ -15,29 +15,37 @@ import java.util.Map;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserServiceImpl implements CRUDService {
 
-    private final UserMapper mapper;
-    private final BCryptPasswordEncoder encoder;
+	private final UserMapper mapper;
+	private final BCryptPasswordEncoder encoder;
 
-    @Override
-    public boolean create(Object object) {
+	@Override
+	public boolean create(Object object) {
+		Map<String, String> map = (Map<String, String>) object;
+		map.put("password", encoder.encode(map.get("password")));
+		return mapper.insertUser(map) >= 1;
+	}
 
-        Map<String, String> map = (Map<String, String>) object;
-        map.put("password", encoder.encode(map.get("password")));
-        return mapper.insertUser(map) >= 1;
-    }
+	@Override
+	public List read(Object object) {
+		return null;
+	}
 
-    @Override
-    public List read(Object object) {
-        return null;
-    }
+	@Override
+	public boolean update(Object object) {
+		Map<String, String> map = (Map<String, String>) object;
 
-    @Override
-    public boolean update(Object object) {
-        return false;
-    }
+		if (encoder.matches(map.get("password"), mapper.selectPassword(map.get("userid")))) {
+			map.put("newPassword", encoder.encode(map.get("newPassword")));
+
+			return mapper.updateUser(map) >= 1;
+
+		}
+		return false;
+	}
 
     @Override
     public boolean delete(Object object) {
         return mapper.deleteUser((String) object) >= 1;
     }
+
 }
