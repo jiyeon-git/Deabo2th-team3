@@ -1,31 +1,23 @@
 package edu.kosa.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
-import java.util.Date;
 
+@Getter
+@Setter
 public class UserDTO extends User {
+
+    private String userId;
+
     public UserDTO(String username, String password, boolean enabled, boolean accountNonExpired,
                    boolean credentialsNonExpired, boolean accountNonLocked,
-                   Collection<? extends GrantedAuthority> authorities, String userid) {
+                   Collection<? extends GrantedAuthority> authorities, String userId) {
 
         super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
-        this.userid = userid;
+        this.userId = userId;
     }
-
-    private String userid;
-
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
-
-
 }
