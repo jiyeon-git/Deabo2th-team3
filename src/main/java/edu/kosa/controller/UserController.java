@@ -38,7 +38,16 @@ public class UserController {
 
     @PostMapping("/join")
     public String joinSubmit(@RequestParam Map<String, String> map) {
-        service.create(map);
+
+        if (service.create(map)) log.info("회원가입 성공");
+        return "redirect:/";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/delete/{userId}")
+    public String deleteUser(@PathVariable String userId) {
+
+        if (service.delete(userId)) log.info("회원탈퇴 성공");
         return "redirect:/";
     }
     

@@ -1,5 +1,6 @@
 package edu.kosa.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -18,4 +19,7 @@ public interface UserMapper {
     
     @Select("SELECT password FROM USERS WHERE userid=#{userid}")
     String selectPassword(String userid);
+
+    @Delete("DELETE FROM USERS WHERE USERID = #{userId}")
+    int deleteUser(String userId);
 }
