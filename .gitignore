@@ -39,6 +39,5 @@ build/
 *.map
 .gitsecret/keys/random_seed
 !*.secret
-src/main/resources/mybatis/db.properties
 bin/
 src/main/resources/db.properties
