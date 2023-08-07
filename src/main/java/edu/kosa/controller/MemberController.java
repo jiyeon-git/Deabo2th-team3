@@ -16,7 +16,6 @@ public class MemberController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/")
     public String home() {
-        log.info("home");
         return "home";
     }
 }
