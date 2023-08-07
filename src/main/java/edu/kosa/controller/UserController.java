@@ -1,19 +1,25 @@
 package edu.kosa.controller;
 
-import edu.kosa.model.UserDTO;
+import edu.kosa.service.CRUDService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Map;
 
 @Log4j2
 @RequestMapping
 @Controller
-@RequiredArgsConstructor
-public class MemberController {
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class UserController {
+
+    private final CRUDService service;
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @GetMapping("/")
@@ -33,7 +39,7 @@ public class MemberController {
 
     @PostMapping("/join")
     public String joinSubmit(@RequestParam Map<String, String> map) {
-        // insert하는 서비스 호출
+        service.create(map);
         return "redirect:/";
     }
 }

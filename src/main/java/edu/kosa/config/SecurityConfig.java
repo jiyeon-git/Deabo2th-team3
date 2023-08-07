@@ -40,21 +40,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http
+                .csrf().disable()       // POST 요청 허용
                 .authorizeRequests()    // 요청에 권한 설정을 적용
+                .antMatchers("/join").permitAll() // 회원가입 페이지에 모든 사용자 접근 허용
                 .anyRequest().authenticated()   // 모든 요청에 대해 인증된(로그인된) 사용자만 접근할 수 있도록 설정
                 .and()
 
                 // 모든 사용자가 폼 로그인 페이지에 접근할 수 있도록 허용
                 .formLogin()
-//                .loginPage("/")
-                .loginProcessingUrl("")
+                .loginPage("/login")
+//                .loginProcessingUrl("")
 
                 .permitAll()
                 .and()
 
                 //모든 사용자가 로그아웃 기능을 사용할 수 있도록 허용
                 .logout()
-//                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/login")
                 .permitAll();
     }
 
