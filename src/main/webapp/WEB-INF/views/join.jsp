@@ -1,14 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<form action="/join" method="post"></form>
-	<h2>х╦©Ь╟║ют</h2>
+	<h2>М ▄Л⌡░Й╟─Л·┘</h2>
 	<table>
 		<tr>
 			<th>ID</th>
@@ -19,15 +19,15 @@
 			<td><input type="text" name="password"></td>
 		</tr>
 		<tr>
-			<th>╠ггяе╦ют</th>
+			<th>Й╤▄М∙°М┐─Л·┘</th>
 			<td>
 			<select name="authority">
-				<option value="ROLE_USER">х╦©Ь</option>
-				<option value="ROLE_ADMIN">╟Э╦╝юз</option>
+				<option value="ROLE_USER">М ▄Л⌡░</option>
+				<option value="ROLE_ADMIN">Й╢─К╕╛Л·░</option>
 			</select>
 			</td>
 		</tr>
 	</table>
-	<input type="submit" value="╟║ют">
+	<input type="submit" value="Й╟─Л·┘">
 </body>
 </html>
