@@ -25,11 +25,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
         auth
+//                .inMemoryAuthentication()
+//                .withUser("user").password("{noop}user").roles("USER")
+//                .and()
+//                .withUser("admin").password("{noop}admin").roles("ADMIN", "USER");
                 .jdbcAuthentication()
                 .dataSource(dataSource)
-                .passwordEncoder(encoder());
-//                .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username = ?");
-//                .authoritiesByUsernameQuery("SELECT u.username, a.authority FROM authorities a, users u WHERE u.username = ? AND u.authorityId = a.id");
+                .passwordEncoder(encoder())
+                .usersByUsernameQuery("SELECT userid, password, enabled FROM users WHERE userid = ?")
+                .authoritiesByUsernameQuery("SELECT u.userid username, a.authority FROM authorities a, users u WHERE u.userid = ? AND u.authorityId = a.id");
     }
 
     @Override
@@ -42,19 +46,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // 모든 사용자가 폼 로그인 페이지에 접근할 수 있도록 허용
                 .formLogin()
-                .loginPage("/")
+//                .loginPage("/")
+                .loginProcessingUrl("")
+
                 .permitAll()
                 .and()
 
                 //모든 사용자가 로그아웃 기능을 사용할 수 있도록 허용
                 .logout()
-                .logoutSuccessUrl("/")
+//                .logoutSuccessUrl("/")
                 .permitAll();
     }
 
     @Bean
     public BCryptPasswordEncoder encoder() {
-
         return new BCryptPasswordEncoder();
     }
 }
