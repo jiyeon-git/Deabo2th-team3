@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // 모든 사용자가 폼 로그인 페이지에 접근할 수 있도록 허용
                 .formLogin()
-//                .loginPage("/")
+                .loginPage("/login")
 //                .loginProcessingUrl("")
                 .permitAll()
                 .and()
