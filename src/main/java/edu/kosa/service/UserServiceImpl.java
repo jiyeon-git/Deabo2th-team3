@@ -1,21 +1,26 @@
 package edu.kosa.service;
 
-import edu.kosa.mapper.MemberMapper;
+import edu.kosa.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class MemberServiceImpl implements CRUDService {
+public class UserServiceImpl implements CRUDService {
 
-    private final MemberMapper mapper;
+    private final UserMapper mapper;
+    private final BCryptPasswordEncoder encoder;
 
     @Override
     public boolean create(Object object) {
-        return false;
+        Map<String, String> map = (Map<String, String>)object;
+        map.put("password", encoder.encode(map.get("password")));
+        return mapper.insertUser(map) >= 1;
     }
 
     @Override
