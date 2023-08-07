@@ -23,7 +23,7 @@
     <table>
         <tr>
             <th>ID</th>
-            <td><input type="text" name="userid"></td>
+            <td><input type="text" name="userId"></td>
         </tr>
         <tr>
             <th>PWD</th>

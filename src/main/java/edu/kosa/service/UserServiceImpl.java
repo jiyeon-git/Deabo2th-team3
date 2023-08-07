@@ -20,6 +20,7 @@ public class UserServiceImpl implements CRUDService {
 
     @Override
     public boolean create(Object object) {
+
         Map<String, String> map = (Map<String, String>) object;
         map.put("password", encoder.encode(map.get("password")));
         return mapper.insertUser(map) >= 1;
@@ -37,6 +38,6 @@ public class UserServiceImpl implements CRUDService {
 
     @Override
     public boolean delete(Object object) {
-        return false;
+        return mapper.deleteUser((String) object) >= 1;
     }
 }
