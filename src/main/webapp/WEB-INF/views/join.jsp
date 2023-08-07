@@ -27,7 +27,7 @@
         </tr>
         <tr>
             <th>PWD</th>
-            <td><input type="text" name="password"></td>
+            <td><input type="password" name="password"></td>
         </tr>
         <tr>
             <th>권한타입</th>

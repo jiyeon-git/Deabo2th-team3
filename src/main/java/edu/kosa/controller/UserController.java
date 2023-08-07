@@ -17,7 +17,7 @@ import java.util.Map;
 @RequestMapping
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class MemberController {
+public class UserController {
 
     private final CRUDService service;
 
@@ -39,7 +39,7 @@ public class MemberController {
 
     @PostMapping("/join")
     public String joinSubmit(@RequestParam Map<String, String> map) {
-        // insert하는 서비스 호출
+        service.create(map);
         return "redirect:/";
     }
 }
